@@ -1,0 +1,114 @@
+{
+  "suite": "mece-skill-evals",
+  "version": "1.0.0",
+  "description": "Property-based evals for the MECE decomposition skill. Each case tests a specific dimension of output quality.",
+  "cases": [
+    {
+      "id": "known-identity-revenue",
+      "dimension": "known-identity",
+      "description": "Must anchor on Revenue = Volume × Price, not free-form business categories",
+      "input": "Why is revenue declining this quarter?",
+      "criteria": [
+        "Top-level split maps to Volume and Price dimensions (exact words or clear synonyms like quantity/units, pricing/ASP/deal-size)",
+        "Does NOT use functional buckets (marketing, sales, product, engineering) at level 1",
+        "Sub-categories under Volume include churn/conversion/lead-related concepts",
+        "Sub-categories under Price include pricing/deal-size/mix concepts"
+      ],
+      "anti_patterns_at_level_1": ["marketing", "sales team", "product", "engineering", "economy"]
+    },
+    {
+      "id": "known-identity-profit",
+      "dimension": "known-identity",
+      "description": "Must anchor on Profit = Revenue - Costs, not ad-hoc categories",
+      "input": "Why are our margins shrinking?",
+      "criteria": [
+        "Top-level split maps to Revenue side and Cost side",
+        "Does NOT jump straight to tactical categories (hiring, cloud spend, pricing) at level 1",
+        "Revenue side decomposes further (Volume × Price or similar)",
+        "Cost side decomposes into Fixed + Variable or similarly exhaustive split"
+      ],
+      "anti_patterns_at_level_1": ["hiring too fast", "cloud costs", "competition", "bad pricing"]
+    },
+    {
+      "id": "me-violation-detection",
+      "dimension": "mutual-exclusivity",
+      "description": "Given a domain where naive categories overlap, output must have clean boundaries",
+      "input": "What are all the ways we can reduce customer support ticket volume?",
+      "criteria": [
+        "No category is a subset of another (e.g., 'improve documentation' and 'self-service' must not both appear as top-level peers)",
+        "Categories partition the space by a single consistent dimension (e.g., by ticket lifecycle stage, by root cause, or by intervention type — not a mix)",
+        "ME check section explicitly confirms no overlaps or explains boundary decisions"
+      ],
+      "anti_patterns_at_level_1": ["improve product AND fix bugs as separate top-level items", "documentation AND self-service as peers", "training AND onboarding as peers"]
+    },
+    {
+      "id": "ce-gap-detection",
+      "dimension": "collective-exhaustiveness",
+      "description": "Decomposition must not miss obvious categories",
+      "input": "How do users leave our SaaS product?",
+      "criteria": [
+        "Covers voluntary churn (user decides to leave)",
+        "Covers involuntary churn (payment failure, account expiry)",
+        "Covers contraction (user stays but downgrades/reduces usage)",
+        "CE check section confirms completeness or explains what was tested"
+      ],
+      "required_concepts": ["voluntary/active churn", "involuntary/passive churn", "contraction/downgrade"]
+    },
+    {
+      "id": "depth-calibration",
+      "dimension": "depth",
+      "description": "Complex problem should get 2-3 levels, not 1 (too shallow) or 5+ (over-decomposed)",
+      "input": "Why is our mobile app engagement declining?",
+      "criteria": [
+        "Has at least 2 levels of decomposition",
+        "Does not exceed 3 levels for any branch",
+        "Leaf nodes are actionable or investigable (not further abstract categories)",
+        "High-impact branches get deeper decomposition than low-impact ones"
+      ],
+      "structural": {
+        "min_depth": 2,
+        "max_depth": 3,
+        "min_top_level_categories": 3,
+        "max_top_level_categories": 7
+      }
+    },
+    {
+      "id": "sizing-present",
+      "dimension": "sizing",
+      "description": "Every top-level category must have a rough size estimate",
+      "input": "What are all the sources of operational cost in our cloud infrastructure?",
+      "criteria": [
+        "Every top-level category has an L/M/S size annotation",
+        "Sizing drives the 'where to focus' recommendation (largest bucket = recommended focus, or explicit reason if not)",
+        "At least one category is sized differently from others (not all Medium)"
+      ]
+    },
+    {
+      "id": "fat-other-check",
+      "dimension": "other-bucket",
+      "description": "Problem where 'Other' is tempting must be properly decomposed",
+      "input": "Categorize all the reasons a B2B sales deal might stall.",
+      "criteria": [
+        "If an 'Other' category exists, it is clearly small/residual",
+        "No catch-all bucket like 'miscellaneous factors' or 'other reasons' captures more than one or two items",
+        "Major deal-stall reasons (budget, authority, need, timing, competition, internal politics) are all explicitly placed in named categories"
+      ],
+      "anti_patterns": ["other factors", "miscellaneous", "everything else"]
+    },
+    {
+      "id": "output-format-compliance",
+      "dimension": "format",
+      "description": "Output must follow the specified tree format with all required sections",
+      "input": "How can we improve developer productivity?",
+      "criteria": [
+        "Uses tree notation (├── └── or equivalent indented structure)",
+        "Includes 'MECE Breakdown' header with problem statement",
+        "Includes ME check section",
+        "Includes CE check section",
+        "Includes 'Where to focus' recommendation",
+        "Top-level categories have L/M/S sizing annotations",
+        "No nested code block rendering issues"
+      ]
+    }
+  ]
+}
