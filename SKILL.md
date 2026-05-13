@@ -18,13 +18,13 @@ cloud-ok: true
 This is the reusable algorithm. Other skills reference this section directly.
 
 1. **Accept** the problem statement
-2. **Anchor on known identities** — check the Known Identity Library below. If the problem matches a canonical structure, start from it. Don't free-form what has a mathematical identity.
+2. **Anchor on known identities (MANDATORY)** — check the Known Identity Library below. If the problem maps to a known identity, you MUST use that identity as your level-1 structure. Do not rearrange, combine, or substitute with a "more nuanced" alternative. The identity is the decomposition. Refine within its branches, not around them. Example: "margins shrinking" maps to Profit = Revenue - Costs → level 1 MUST be Revenue-side and Cost-side, not a 3-way or thematic split.
 3. **Decompose** into 3-7 top-level categories. Fewer than 3 usually means you haven't split enough. More than 7 means you need a higher-level grouping.
 4. **Self-test ME** — for every pair of categories, ask: "Could a single item legitimately belong in both?" If yes, redraw the boundary.
 5. **Self-test CE** — ask: "Name something relevant to this problem that doesn't fit any category." If you can, add or restructure.
 6. **Check the Other bucket** — if "Other" or "Miscellaneous" captures more than ~20% of the scope, decompose it further. A fat Other means your structure is leaking.
 7. **Size each bucket** — estimate rough magnitude (Large / Medium / Small impact). This drives the "where to focus" recommendation.
-8. **Go deeper selectively** — apply steps 2-7 recursively within high-impact buckets. Max 3 levels deep unless the problem demands more. Stop when sub-categories become actionable.
+8. **Go deeper selectively (depth follows sizing)** — apply steps 2-7 recursively, but depth MUST vary by bucket size. L-sized buckets MUST get at least one more level of decomposition than S-sized buckets. Do not give every branch uniform depth — that signals you're filling a template, not thinking. Max 3 levels deep unless the problem demands more. Stop when sub-categories become actionable.
 
 ## Known Identity Library
 
