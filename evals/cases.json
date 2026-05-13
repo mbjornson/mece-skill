@@ -134,6 +134,19 @@
       "anti_patterns_at_level_1": ["hackers", "malware", "human error", "insider threats"]
     },
     {
+      "id": "domain-disambiguation-technical",
+      "dimension": "disambiguation",
+      "description": "Technical context should select technical identities, not business ones",
+      "input": "Our deployment pipeline is underperforming. We're seeing failures across multiple services after merging to main.",
+      "criteria": [
+        "Uses Deployment failure identity (Build + Test + Release + Runtime) or a closely related technical identity, NOT business identities like Revenue or Profit",
+        "Top-level categories are technical in nature (build, test, release, runtime stages or similar)",
+        "Does NOT include business concepts (revenue, customers, market) at any level",
+        "Context clues (deployment pipeline, services, merging to main) correctly signal technical domain"
+      ],
+      "anti_patterns_at_level_1": ["revenue", "customers", "market", "pricing", "sales"]
+    },
+    {
       "id": "output-format-compliance",
       "dimension": "format",
       "description": "Output must follow the specified tree format with all required sections",
