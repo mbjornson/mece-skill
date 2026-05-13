@@ -30,6 +30,8 @@ This is the reusable algorithm. Other skills reference this section directly.
 
 Anchor on these before building custom structures. These are mathematical identities or universally accepted decompositions — not suggestions.
 
+### Business
+
 | Problem | MECE Identity |
 |---------|---------------|
 | Revenue | Volume x Price |
@@ -40,9 +42,32 @@ Anchor on these before building custom structures. These are mathematical identi
 | Market | Segment A + B + C + ... + Other |
 | Time | Past + Present + Future |
 | Control | Things we control + Things we don't |
-| Users | New + Returning + Resurrected + Churned |
+| Users | New + Returning + Resurrected + Contracted + Churned |
 | Funnel | Awareness > Consideration > Decision > Retention |
 | Risk | Probability x Impact |
+
+### Performance / Systems
+
+| Problem | MECE Identity |
+|---------|---------------|
+| Latency | Network + Compute + I/O + Queue wait |
+| System failure | Hardware + Software + Configuration + External dependency |
+| Capacity | CPU + Memory + Storage + Network bandwidth |
+
+### Software Engineering
+
+| Problem | MECE Identity |
+|---------|---------------|
+| Bug source | Logic + Data + Concurrency + Integration + Environment |
+| Tech debt | Code + Architecture + Infrastructure + Dependencies |
+| Deployment failure | Build + Test + Release + Runtime |
+
+### Security
+
+| Problem | MECE Identity |
+|---------|---------------|
+| Attack surface | Network + Application + Identity + Data + Physical |
+| Incident response | Detect + Contain + Eradicate + Recover |
 
 ## Direct Invocation
 

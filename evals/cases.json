@@ -96,6 +96,44 @@
       "anti_patterns": ["other factors", "miscellaneous", "everything else"]
     },
     {
+      "id": "known-identity-latency",
+      "dimension": "known-identity-technical",
+      "description": "Must anchor on Latency = Network + Compute + I/O + Queue wait",
+      "input": "Why is our API response time so slow?",
+      "criteria": [
+        "Top-level split maps to Network, Compute, I/O, and Queue/wait dimensions (exact words or clear synonyms)",
+        "Does NOT use symptom-based categories (slow database, bad code, too many users) at level 1",
+        "Each top-level category decomposes into specific investigable causes"
+      ],
+      "anti_patterns_at_level_1": ["database", "bad code", "too many requests", "server is old", "frontend"]
+    },
+    {
+      "id": "known-identity-bug-source",
+      "dimension": "known-identity-technical",
+      "description": "Must anchor on Bug source = Logic + Data + Concurrency + Integration + Environment",
+      "input": "What are all the possible root causes for this production bug?",
+      "criteria": [
+        "Top-level split covers Logic, Data, Concurrency, Integration, and Environment dimensions (exact words or clear synonyms)",
+        "Does NOT use team-based categories (frontend bug, backend bug, infra bug) at level 1",
+        "Concurrency is explicitly present as its own category, not buried under Logic or Integration",
+        "Environment (config, OS, runtime version, etc.) is explicitly present, not lumped into other categories"
+      ],
+      "anti_patterns_at_level_1": ["frontend", "backend", "database issue", "someone broke it"]
+    },
+    {
+      "id": "known-identity-attack-surface",
+      "dimension": "known-identity-technical",
+      "description": "Must anchor on Attack surface = Network + Application + Identity + Data + Physical",
+      "input": "Where are we most vulnerable to a security breach?",
+      "criteria": [
+        "Top-level split covers Network, Application, Identity, Data, and Physical dimensions",
+        "Does NOT use threat-actor categories (hackers, insiders, nation states) at level 1",
+        "Identity/authentication is its own category, not merged with Application",
+        "Physical security is included even for cloud-native contexts (supply chain, device theft, etc.)"
+      ],
+      "anti_patterns_at_level_1": ["hackers", "malware", "human error", "insider threats"]
+    },
+    {
       "id": "output-format-compliance",
       "dimension": "format",
       "description": "Output must follow the specified tree format with all required sections",
